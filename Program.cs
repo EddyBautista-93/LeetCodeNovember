@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace LeetCodeNovember
 {
@@ -55,38 +56,54 @@ namespace LeetCodeNovember
         //  November 2nd
         //Algorithm of Insertion Sort: Array
         // return the sorted array
-        static int[] InsertionSort(int[] inputArray)
+        //static int[] InsertionSort(int[] inputArray)
+        //{
+        //    for(int i = 0; i < inputArray.Length - 1; i++)
+        //    {
+        //        for(int j = i + 1; j > 0; j--)
+        //        {
+        //            if(inputArray[j - 1] > inputArray[j])
+        //            {
+        //                int temp = inputArray[j - 1];
+        //                inputArray[j - 1] = inputArray[j];
+        //                inputArray[j] = temp;
+        //            }
+        //        }
+        //    }
+        //    return inputArray;
+        //}
+        //public static void PrintIntegerArray(int[] array)
+        //{
+        //    foreach (int i in array)
+        //    {
+        //        Console.Write(i.ToString() + "  ");
+        //    }
+        //}
+        public static int[] FoldArray(int[] array, int runs)
         {
-            for(int i = 0; i < inputArray.Length - 1; i++)
+            int length = array.Length / 2;
+
+            // take array method = he Take() method extracts the first n elements (where n is a parameter to the method) from the beginning of the target sequence and returns a new sequence containing only the elements taken.
+
+            var folded =  array.Take(length).Zip(array.Reverse().Take(length), (a, b) => a + b);
+
+            if (array.Length % 2 == 1)
             {
-                for(int j = i + 1; j > 0; j--)
-                {
-                    if(inputArray[j - 1] > inputArray[j])
-                    {
-                        int temp = inputArray[j - 1];
-                        inputArray[j - 1] = inputArray[j];
-                        inputArray[j] = temp;
-                    }
-                }
+                folded = folded.Concat(new int[] { array[length] });
             }
-            return inputArray;
+
+            runs--;
+
+            return runs == 0 ? folded.ToArray() : FoldArray(folded.ToArray(), runs);
+
         }
-        public static void PrintIntegerArray(int[] array)
-        {
-            foreach (int i in array)
-            {
-                Console.Write(i.ToString() + "  ");
-            }
-        }
+
 
         private static void Main(string[] args)
         {
-            int[] numbers = new int[10] { 2, 5, -4, 11, 0, 18, 22, 67, 51, 6 };
-            Console.WriteLine("\nOriginal Array Elements :");
-            PrintIntegerArray(numbers);
-            Console.WriteLine("\nSorted Array Elements :");
-            PrintIntegerArray(InsertionSort(numbers));
-            Console.WriteLine("\n");
+            int[] fold = [1, 2, 2];
+            FoldArray(fold, 1);
+          
 
         }
     }
