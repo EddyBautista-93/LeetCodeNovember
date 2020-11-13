@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace LeetCodeNovember
 {
@@ -79,31 +81,50 @@ namespace LeetCodeNovember
         //        Console.Write(i.ToString() + "  ");
         //    }
         //}
-        public static int[] FoldArray(int[] array, int runs)
+        //public static int[] FoldArray(int[] array, int runs)
+        //{
+        //    int length = array.Length / 2;
+
+        //    // take array method = he Take() method extracts the first n elements (where n is a parameter to the method) from the beginning of the target sequence and returns a new sequence containing only the elements taken.
+
+        //    var folded =  array.Take(length).Zip(array.Reverse().Take(length), (a, b) => a + b);
+
+        //    if (array.Length % 2 == 1)
+        //    {
+        //        folded = folded.Concat(new int[] { array[length] });
+        //    }
+
+        //    runs--;
+
+        //    return runs == 0 ? folded.ToArray() : FoldArray(folded.ToArray(), runs);
+
+        //}
+        // using generic type 
+        // Quick Fibanaci sequence - iterative approach
+        // public static void fibinacciIterative(int length)
+        // {
+        //     int a = 0, b = 1, c = 0;
+        //     Console.WriteLine("{0} {1}", a, b);
+        //     for(int i = 2; i < length; i++)
+        //     {
+        //         c = a + b;
+        //         Console.Write(" {0}", c);
+        //         a = b;
+        //         b = c;
+        //     }
+        // }
+        public static string RemoveUrlAnchor(string url)
         {
-            int length = array.Length / 2;
-
-            // take array method = he Take() method extracts the first n elements (where n is a parameter to the method) from the beginning of the target sequence and returns a new sequence containing only the elements taken.
-
-            var folded =  array.Take(length).Zip(array.Reverse().Take(length), (a, b) => a + b);
-
-            if (array.Length % 2 == 1)
-            {
-                folded = folded.Concat(new int[] { array[length] });
-            }
-
-            runs--;
-
-            return runs == 0 ? folded.ToArray() : FoldArray(folded.ToArray(), runs);
-
+            string removedAnchor = url.Substring(0, url.LastIndexOf('#'));
+            Console.WriteLine(removedAnchor);
+            return removedAnchor;
         }
-
 
         private static void Main(string[] args)
         {
-            int[] fold = [1, 2, 2];
-            FoldArray(fold, 1);
-          
+            RemoveUrlAnchor("www.codewars.com#about");
+
+
 
         }
     }
