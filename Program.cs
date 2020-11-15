@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace LeetCodeNovember
 {
@@ -113,17 +114,33 @@ namespace LeetCodeNovember
         //         b = c;
         //     }
         // }
-        public static string RemoveUrlAnchor(string url)
+        //   public static string RemoveUrlAnchor(string url)
+        //   {
+        //       string removedAnchor = url.Substring(0, url.LastIndexOf('#'));
+        //       Console.WriteLine(removedAnchor);
+        //       return removedAnchor;
+        //   }
+
+        public static string BreakCamelCase(string str)
         {
-            string removedAnchor = url.Substring(0, url.LastIndexOf('#'));
-            Console.WriteLine(removedAnchor);
-            return removedAnchor;
+            if (string.IsNullOrEmpty(str))
+                return str;
+
+            StringBuilder sb = new StringBuilder();
+            foreach(var c in str)
+            {
+                if (char.IsUpper(c))
+                    sb.Append(' ');
+
+                sb.Append(c);
+            }
+            return sb.ToString();
         }
 
         private static void Main(string[] args)
         {
-            RemoveUrlAnchor("www.codewars.com#about");
-
+            //    RemoveUrlAnchor("www.codewars.com#about");
+            BreakCamelCase("The quick brown fox jumps over the lazy dog.");
 
 
         }
