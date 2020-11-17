@@ -24,17 +24,17 @@ namespace LeetCodeNovember
         //todo
         //--Traverse the linked list and store all values in a string or array. convert the values obtained to decimal value.
         //--You can solve the problem in O(1) memory using bits operation.use shift left operation( << ) and or operation( | ) to get the decimal value in one operation.
-        public class ListNode
-        {
-            public int val;
-            public ListNode next;
-
-            public ListNode(int val = 0, ListNode next = null)
-            {
-                this.val = val;
-                this.next = next;
-            }
-        }
+    //    public class ListNode
+    //    {
+    //        public int val;
+    //        public ListNode next;
+    //
+    //        public ListNode(int val = 0, ListNode next = null)
+    //        {
+    //            this.val = val;
+    //            this.next = next;
+    //        }
+    //    }
 
         //  private var curr = head;
         //  private int length = 0;
@@ -137,10 +137,19 @@ namespace LeetCodeNovember
             return sb.ToString();
         }
 
-        private static void Main(string[] args)
+        public static int RoundToNext5(int n)
         {
-            //    RemoveUrlAnchor("www.codewars.com#about");
-            BreakCamelCase("The quick brown fox jumps over the lazy dog.");
+            while (n % 5 != 0) n++;
+            Console.WriteLine(n);
+            return n;
+        }
+    
+
+            private static void Main(string[] args)
+            {
+            RoundToNext5(6);
+            RoundToNext5(2);
+
 
 
         }
