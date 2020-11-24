@@ -10,19 +10,49 @@ namespace LeetCodeNovember
         // IsAnagram
         //
 
-        public static bool IsAnagram(string test, string original)
+        // public static bool IsAnagram(string test, string original)
+        // {
+        //     return SortLower(test) == SortLower(original);
+        // }
+        //
+        // public static string SortLower(string str)
+        // {
+        //     return String.Concat(str.ToLower().OrderBy(c => c));
+        // }
+        //
+
+        //In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+        //
+        //Example:
+        //
+        //Kata.HighAndLow("1 2 3 4 5");  // return "5 1"
+        //Kata.HighAndLow("1 2 -3 4 5"); // return "5 -3"
+        //Kata.HighAndLow("1 9 3 4 -5"); // return "9 -5"
+
+       // Code Explanation: First thing i want to to do is split the string into a number arrray using linq.
+       // then use the built in max and min methods to grab both values
+
+        public static string HighAndLow(string numbers)
         {
-            return SortLower(test) == SortLower(original);
+            int[] numArray = numbers.Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            int max = numArray.Max();
+            int min = numArray.Min();
+            string maxMinString = max + " " + min;
+            return maxMinString;
+
+           // codewars solution
+            //   var parsed = numbers.Split().Select(int.Parse);
+            //return parsed.Max() + " " + parsed.Min();
+
         }
 
-        public static string SortLower(string str)
-        {
-            return String.Concat(str.ToLower().OrderBy(c => c));
-        }
 
         private static void Main(string[] args)
         {
-            IsAnagram("Buckethead", "DeathCubeK");
+            // IsAnagram("Buckethead", "DeathCubeK");
+            HighAndLow("1 2 3 4 5");
+            HighAndLow("1 2 -3 4 5");
+            HighAndLow("1 9 3 4 -5");
         }
     }
 }
